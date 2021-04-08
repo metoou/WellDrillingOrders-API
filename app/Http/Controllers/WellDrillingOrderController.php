@@ -12,7 +12,7 @@ class WellDrillingOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function GetAllWellDrillingOrders()
+    public function index()
     {
         $wellDrillingOrders = WellDrillingOrders::orderBy('id', 'desc')->get();
         return response()->json($wellDrillingOrders);
@@ -24,7 +24,7 @@ class WellDrillingOrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function CreateWellDrillingOrder(Request $request)
+    public function store(Request $request)
     {
         $wellDrillingOrders = new WellDrillingOrders;
         $wellDrillingOrders->customer = $request->customer;
@@ -50,7 +50,7 @@ class WellDrillingOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function GetWellDrillingOrderById($id)
+    public function show($id)
     {
         $wellDrillingOrders = WellDrillingOrders::findOrFail($id);
         return response()->json($wellDrillingOrders);
@@ -63,7 +63,7 @@ class WellDrillingOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function UpdateWellDrillingOrder(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $wellDrillingOrders = WellDrillingOrders::findOrFail($id);
         $wellDrillingOrders->customer = $request->customer;
@@ -89,7 +89,7 @@ class WellDrillingOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function Delete($id)
+    public function destroy($id)
     {
         $wellDrillingOrders = WellDrillingOrders::findOrFail($id);
         $wellDrillingOrders->delete();
